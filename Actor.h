@@ -23,7 +23,7 @@ public:
 	inline int GetHP() { return HP; }
 	inline Teamname GetTeam() { return Team; }
 	void SetHP(int NewHP);
-	void SetTeam(int NewTeam);
+	void SetTeam(Teamname NewTeam);
 	void SetX(int NewX);
 	void SetY(int NewY);
 	void SetShape(char NewShape);

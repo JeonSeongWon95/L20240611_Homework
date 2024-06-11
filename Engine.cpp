@@ -1,20 +1,27 @@
 #include "Engine.h"
 
+static UEngine* AddressEngine;
+
 UEngine::~UEngine()
 {
-	delete AddressEngine;
+
 }
 
 UEngine* UEngine::GetInstance()
 {
-	if (AddressEngine)
-	{
-		AddressEngine = new UEngine();
-	}
+
+	AddressEngine = new UEngine();
 	return AddressEngine;
+}
+
+void UEngine::Render()
+{
+	World.SettingMap();
+	World.RederWorld();
 }
 
 UEngine::UEngine()
 {
+	IsRunning = true;
 	AddressEngine = nullptr;
 }
