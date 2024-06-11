@@ -26,6 +26,9 @@ public:
 	void Render();
 	void Tick();
 	void Input();
+	char GetKey();
+	void Run();
+	void LoadLevel(std::string Filename);
 
 protected:
 	UWorld World;

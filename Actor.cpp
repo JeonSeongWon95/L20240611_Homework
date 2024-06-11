@@ -1,4 +1,6 @@
 #include "Actor.h"
+#include <iostream>
+#include <windows.h>
 
 AActor::AActor()
 {
@@ -7,10 +9,25 @@ AActor::AActor()
 	Team = Teamname::NONE;
 	X = 0;
 	Y = 0;
+	Layer = 0;
 }
 
 AActor::~AActor()
 {
+}
+
+void AActor::Tick()
+{
+}
+
+void AActor::Render()
+{
+	COORD Cur;
+	Cur.X = X;
+	Cur.Y = Y;
+	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), Cur);
+
+	std::cout << Shape;
 }
 
 void AActor::SetHP(int NewHP)

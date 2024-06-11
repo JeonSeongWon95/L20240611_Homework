@@ -1,6 +1,7 @@
 #include "World.h"
 #include <fstream>
 #include <iostream>
+#include <conio.h>
 #include "SDL.h"
 #include "Player.h"
 #include "Monster.h"
@@ -11,46 +12,12 @@
 
 UWorld::UWorld()
 {
-	std::ofstream WriteMap;
-	WriteMap.open("Map.txt");
-
-	for (int Line = 0; Line < 10; ++Line)
-	{
-		for (int Count = 0; Count < 10; ++Count)
-		{
-			if(Line == 1 && Count == 1)
-			{
-				WriteMap << 'P';
-			}
-			else if (Line == 8 && Count == 8)
-			{
-				WriteMap << 'G';
-			}
-			else if (Line == 5 && Count == 5)
-			{
-				WriteMap << 'M';
-			}
-			else if (Line == 0 || Line == 9)
-			{
-				WriteMap << '*';
-			}
-			else if (Count == 0 || Count == 9)
-			{
-				WriteMap << '*';
-			}
-			else
-			{
-				WriteMap << ' ';
-			}
-		}
-	}
-
-	WriteMap.close();
+	Key = 0;
 }
 
 UWorld::~UWorld()
 {
-	for(auto Actor : Actors)
+	for (auto Actor : Actors)
 	{
 		delete Actor;
 	}
@@ -63,41 +30,48 @@ void UWorld::SpawnActor(AActor* NewActor)
 	Actors.push_back(NewActor);
 }
 
-void UWorld::SettingMap()
+void UWorld::SettingMap(std::string Filename)
 {
 	std::ifstream ReadMap;
-	ReadMap.open("Map.txt");
+	ReadMap.open(Filename);
 
-	char SpawnPosition = '0';
+	char SpawnPosition[256];
 
-	for (int Line = 0; Line < 10; ++Line)
+	int Line = 0;
+
+	while(ReadMap.getline(SpawnPosition, 80))
 	{
-		for (int Count = 0; Count < 10; ++Count)
+		for (int Count = 0; Count < strlen(SpawnPosition); ++Count)
 		{
-			ReadMap.get(SpawnPosition);
+			if (SpawnPosition[Count] == 'P')
+			{
+				SpawnActor(new APlayer(Count, Line));
+				SpawnActor(new AFloor(Count, Line));
+			}
+			else if (SpawnPosition[Count] == 'M')
+			{
+				SpawnActor(new AMonster(Count, Line));
 
-			if(SpawnPosition == 'P')
-			{
-				SpawnActor(new APlayer);
 			}
-			else if(SpawnPosition == 'M')
-			{ 
-				SpawnActor(new AMonster);
-			}
-			else if (SpawnPosition == 'M')
+			else if (SpawnPosition[Count] == 'G')
 			{
-				SpawnActor(new AGoal);
+				SpawnActor(new AGoal(Count, Line));
+
 			}
-			else if (SpawnPosition == '*')
+			else if (SpawnPosition[Count] == '*')
 			{
-				SpawnActor(new AWall);
+				SpawnActor(new AWall(Count, Line));
+
 			}
-			else if (SpawnPosition == ' ')
+			else if(SpawnPosition[Count] == ' ')
 			{
-				SpawnActor(new AFloor);
+				SpawnActor(new AFloor(Count, Line));
 			}
 		}
+
+		Line++;
 	}
+	sort();
 
 	ReadMap.close();
 
@@ -105,8 +79,40 @@ void UWorld::SettingMap()
 
 void UWorld::RederWorld()
 {
+
 	for(auto Actor : Actors)
 	{
-		std::cout << Actor->GetShape();
+		Actor->Render();
+	}
+
+}
+
+void UWorld::TickWorld()
+{
+	for(auto Actor : Actors)
+	{
+		Actor->Tick();
+	}
+}
+
+void UWorld::Input()
+{
+	Key = _getch();
+}
+
+void UWorld::sort()
+{
+	AActor* Temp;
+	for(int i  = 0; i < Actors.size(); ++i)
+	{
+		for(int j = i + 1; j < Actors.size(); ++j)
+		{
+			if(Actors[i]->GetLayer() > Actors[j]->GetLayer())
+			{
+				Temp = Actors[i];
+				Actors[i] = Actors[j];
+				Actors[j] = Temp;
+			}
+		}
 	}
 }

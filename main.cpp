@@ -5,10 +5,9 @@ using namespace std;
 
 int main()
 {
-	while (MYENGINE->GetIsRunning())
-	{
-		MYENGINE->Render();
-	}
+	MYENGINE->LoadLevel("Map.txt");
+	MYENGINE->Run();
+
 	return 0;
 
 }
