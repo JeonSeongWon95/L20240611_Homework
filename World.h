@@ -1,12 +1,12 @@
 #pragma once
-#include "Engine.h"
 #include <fstream>
 #include <iostream>
 #include <vector>
 #include "Actor.h"
 
+using namespace std;
 
-class UWorld : public UEngine
+class UWorld
 {
 public:
 	UWorld();
@@ -18,9 +18,8 @@ public:
 
 
 protected:
+	vector<AActor*> Actors;
 
-	std::ifstream ReadMap;
-	std::ofstream WriteMap;
-	std::vector<AActor*> Actors;
+	
 };
 

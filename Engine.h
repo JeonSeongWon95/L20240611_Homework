@@ -4,19 +4,33 @@
 
 class UEngine
 {
+protected:
+	UEngine();
+
 public:
 	virtual ~UEngine();
-	static UEngine* GetInstance();
+	static UEngine* GetInstance() 
+	{
+		if (!AddressEngine)
+		{
+			AddressEngine = new UEngine();
 
-	inline bool GetIsRunning() { return IsRunning; }
+			return AddressEngine;
+		}
+
+		return AddressEngine;
+	};
+
+	inline bool GetIsRunning() const { return IsRunning; }
 
 	void Render();
 	void Tick();
 	void Input();
 
 protected:
-	UEngine();
 	UWorld World;
 	bool IsRunning;
+	static UEngine* AddressEngine;
 };
 
+#define MYENGINE UEngine::GetInstance()

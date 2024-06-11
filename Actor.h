@@ -1,5 +1,4 @@
 #pragma once
-#include "Engine.h"
 
 enum class Teamname 
 {
@@ -10,7 +9,7 @@ enum class Teamname
 	MAX
 };
 
-class AActor : public UEngine
+class AActor
 {
 public:
 	

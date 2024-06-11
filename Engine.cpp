@@ -1,17 +1,10 @@
 #include "Engine.h"
 
-static UEngine* AddressEngine;
+UEngine* UEngine::AddressEngine = nullptr;
 
 UEngine::~UEngine()
 {
 
-}
-
-UEngine* UEngine::GetInstance()
-{
-
-	AddressEngine = new UEngine();
-	return AddressEngine;
 }
 
 void UEngine::Render()

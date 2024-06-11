@@ -8,9 +8,10 @@
 #include "Goal.h"
 #include "Floor.h"
 
+
 UWorld::UWorld()
 {
-	
+	std::ofstream WriteMap;
 	WriteMap.open("Map.txt");
 
 	for (int Line = 0; Line < 10; ++Line)
@@ -64,6 +65,7 @@ void UWorld::SpawnActor(AActor* NewActor)
 
 void UWorld::SettingMap()
 {
+	std::ifstream ReadMap;
 	ReadMap.open("Map.txt");
 
 	char SpawnPosition = '0';
