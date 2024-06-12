@@ -60,5 +60,7 @@ void APlayer::Tick()
 			X--;
 		}
 		break;
+	default:
+		break;
 	}
 }

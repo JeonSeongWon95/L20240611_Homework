@@ -6,6 +6,7 @@ UEngine* UEngine::AddressEngine = nullptr;
 
 UEngine::UEngine()
 {
+	World = new UWorld;
 	IsRunning = true;
 	AddressEngine = nullptr;
 	Key = 0;
@@ -17,12 +18,12 @@ UEngine::~UEngine()
 
 void UEngine::Render()
 {
-	World.RederWorld();
+	World->RederWorld();
 }
 
 void UEngine::Tick()
 {
-	World.TickWorld();
+	World->TickWorld();
 }
 
 void UEngine::Input()
@@ -42,5 +43,5 @@ void UEngine::Run()
 
 void UEngine::LoadLevel(std::string Filename)
 {
-	World.SettingMap(Filename);
+	World->SettingMap(Filename);
 }

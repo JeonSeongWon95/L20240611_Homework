@@ -27,12 +27,12 @@ public:
 	void Tick();
 	void Input();
 	inline char GetKey() { return Key; }
-	inline UWorld GetWorld() { return World; }
+	inline UWorld* GetWorld() { return World; }
 	void Run();
 	void LoadLevel(std::string Filename);
 
 protected:
-	UWorld World;
+	UWorld* World;
 	char Key;
 	bool IsRunning;
 	static UEngine* AddressEngine;

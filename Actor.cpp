@@ -59,22 +59,19 @@ void AActor::SetShape(char NewShape)
 
 bool AActor::Predict(int NewX, int NewY)
 {
-	for (AActor* Actor : UEngine::GetInstance()->GetWorld().GetActors())
+	for (AActor* Actor : UEngine::GetInstance()->GetWorld()->GetActors())
 	{
 		if (this == Actor)
 		{
 			continue;
 		}
-		else if (!Actor->GetIsCollision())
+		if (!Actor->GetIsCollision())
 		{
 			continue;
 		}
-		else if (Actor->GetX() == NewX && Actor->GetY() == NewY)
+		if (Actor->GetX() == NewX && Actor->GetY() == NewY)
 		{
-			if (Actor->GetIsCollision())
-			{
-				return false;
-			}
+			return false;
 		}
 		
 	}

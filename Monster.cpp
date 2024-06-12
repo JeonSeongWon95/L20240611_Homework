@@ -27,24 +27,36 @@ AMonster::~AMonster()
 
 void AMonster::Tick()
 {
-	/*srand(time(nullptr));
+	srand(time(nullptr));
 
 	int RandomMove = rand() % 4;
 
 	switch (RandomMove)
 	{
 	case 0:
-		X++;
+		if (Predict(X + 1, Y))
+		{
+			X++;
+		}
 		break;
 	case 1:
-		X--;
+		if (Predict(X - 1, Y))
+		{
+			X--;
+		}
 		break;
 	case 2:
-		Y++;
+		if (Predict(X, Y + 1))
+		{
+			Y++;
+		}
 		break;
 	default:
-		Y--;
+		if (Predict(X, Y - 1))
+		{
+			Y--;
+		}
 		break;
 	}
-	*/
+	
 }
