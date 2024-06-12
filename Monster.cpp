@@ -27,6 +27,7 @@ AMonster::~AMonster()
 
 void AMonster::Tick()
 {
+	/*
 	srand(time(nullptr));
 
 	int RandomMove = rand() % 4;
@@ -46,6 +47,7 @@ void AMonster::Tick()
 		Y--;
 		break;
 	}
+	*/
 
 
 }

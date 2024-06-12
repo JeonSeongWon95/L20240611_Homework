@@ -12,7 +12,6 @@
 
 UWorld::UWorld()
 {
-	Key = 0;
 }
 
 UWorld::~UWorld()
@@ -46,7 +45,6 @@ void UWorld::SettingMap(std::string Filename)
 			if (SpawnPosition[Count] == 'P')
 			{
 				SpawnActor(new APlayer(Count, Line));
-				SpawnActor(new AFloor(Count, Line));
 			}
 			else if (SpawnPosition[Count] == 'M')
 			{
@@ -56,12 +54,10 @@ void UWorld::SettingMap(std::string Filename)
 			else if (SpawnPosition[Count] == 'G')
 			{
 				SpawnActor(new AGoal(Count, Line));
-
 			}
 			else if (SpawnPosition[Count] == '*')
 			{
 				SpawnActor(new AWall(Count, Line));
-
 			}
 			else if(SpawnPosition[Count] == ' ')
 			{
@@ -71,6 +67,7 @@ void UWorld::SettingMap(std::string Filename)
 
 		Line++;
 	}
+
 	sort();
 
 	ReadMap.close();
@@ -95,23 +92,19 @@ void UWorld::TickWorld()
 	}
 }
 
-void UWorld::Input()
-{
-	Key = _getch();
-}
-
 void UWorld::sort()
 {
 	AActor* Temp;
+
 	for(int i  = 0; i < Actors.size(); ++i)
 	{
 		for(int j = i + 1; j < Actors.size(); ++j)
 		{
 			if(Actors[i]->GetLayer() > Actors[j]->GetLayer())
 			{
-				Temp = Actors[i];
-				Actors[i] = Actors[j];
-				Actors[j] = Temp;
+				Temp = Actors[j];
+				Actors[j] = Actors[i];
+				Actors[i] = Temp;
 			}
 		}
 	}

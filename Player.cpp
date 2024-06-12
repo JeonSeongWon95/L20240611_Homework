@@ -32,19 +32,19 @@ void APlayer::Tick()
 	{
 	case 'W':
 	case 'w':
-		Y--;
+		--Y;
 		break;
 	case 'S':
 	case 's':
-		Y++;
+		++Y;
 		break;
 	case 'D':
 	case 'd':
-		X++;
+		++X;
 		break;
 	case 'A':
 	case 'a':
-		X--;
+		--X;
 		break;
 	}
 }

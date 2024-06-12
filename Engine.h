@@ -26,12 +26,13 @@ public:
 	void Render();
 	void Tick();
 	void Input();
-	char GetKey();
+	inline char GetKey() { return Key; }
 	void Run();
 	void LoadLevel(std::string Filename);
 
 protected:
 	UWorld World;
+	char Key;
 	bool IsRunning;
 	static UEngine* AddressEngine;
 };

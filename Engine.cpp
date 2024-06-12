@@ -1,7 +1,15 @@
 #include "Engine.h"
 #include <string>
+#include <conio.h>
 
 UEngine* UEngine::AddressEngine = nullptr;
+
+UEngine::UEngine()
+{
+	IsRunning = true;
+	AddressEngine = nullptr;
+	Key = 0;
+}
 
 UEngine::~UEngine()
 {
@@ -19,12 +27,7 @@ void UEngine::Tick()
 
 void UEngine::Input()
 {
-	World.Input();
-}
-
-char UEngine::GetKey()
-{
-	return World.GetKey();
+	Key = _getch();
 }
 
 void UEngine::Run()
@@ -40,10 +43,4 @@ void UEngine::Run()
 void UEngine::LoadLevel(std::string Filename)
 {
 	World.SettingMap(Filename);
-}
-
-UEngine::UEngine()
-{
-	IsRunning = true;
-	AddressEngine = nullptr;
 }
