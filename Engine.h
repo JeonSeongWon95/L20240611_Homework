@@ -27,6 +27,7 @@ public:
 	void Tick();
 	void Input();
 	inline char GetKey() { return Key; }
+	inline UWorld GetWorld() { return World; }
 	void Run();
 	void LoadLevel(std::string Filename);
 

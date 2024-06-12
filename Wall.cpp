@@ -8,6 +8,7 @@ AWall::AWall()
 	HP = 0;
 	Shape = '*';
 	Layer = 3;
+	IsCollision = true;
 }
 
 AWall::AWall(int NewX, int NewY)
@@ -18,6 +19,7 @@ AWall::AWall(int NewX, int NewY)
 	HP = 0;
 	Shape = '*';
 	Layer = 3;
+	IsCollision = true;
 }
 
 AWall::~AWall()

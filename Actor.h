@@ -30,16 +30,20 @@ public:
 	void SetX(int NewX);
 	void SetY(int NewY);
 	void SetShape(char NewShape);
+	bool Predict(int NewX, int NewY);
+	inline bool GetIsCollision() { return IsCollision; }
 	
 
 
 
 
 protected:
+
 	int Layer;
 	int X;
 	int Y;
 	int HP;
+	bool IsCollision;
 	Teamname Team;
 	char Shape;
 	

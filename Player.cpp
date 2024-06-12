@@ -9,6 +9,7 @@ APlayer::APlayer()
 	HP = 100;
 	Shape = 'P';
 	Layer = 0;
+	IsCollision = true;
 }
 
 APlayer::APlayer(int NewX, int NewY, Teamname NewTeam, int NewHP, char NewShape)
@@ -19,6 +20,7 @@ APlayer::APlayer(int NewX, int NewY, Teamname NewTeam, int NewHP, char NewShape)
 	HP = NewHP;
 	Shape = NewShape;
 	Layer = 0;
+	IsCollision = true;
 }
 
 APlayer::~APlayer()
@@ -32,19 +34,31 @@ void APlayer::Tick()
 	{
 	case 'W':
 	case 'w':
-		--Y;
+		if (Predict(X, Y - 1))
+		{
+			Y--;
+		}
 		break;
 	case 'S':
 	case 's':
-		++Y;
+		if (Predict(X, Y + 1))
+		{
+			Y++;
+		}
 		break;
 	case 'D':
 	case 'd':
-		++X;
+		if (Predict(X + 1, Y))
+		{
+			X++;
+		}
 		break;
 	case 'A':
 	case 'a':
-		--X;
+		if (Predict(X - 1, Y))
+		{
+			X--;
+		}
 		break;
 	}
 }

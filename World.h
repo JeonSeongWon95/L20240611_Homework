@@ -17,6 +17,7 @@ public:
 	void RederWorld();
 	void TickWorld();
 	void sort();
+	inline vector<AActor*> GetActors() { return Actors; }
 
 
 

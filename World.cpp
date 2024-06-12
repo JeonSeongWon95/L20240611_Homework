@@ -45,19 +45,22 @@ void UWorld::SettingMap(std::string Filename)
 			if (SpawnPosition[Count] == 'P')
 			{
 				SpawnActor(new APlayer(Count, Line));
+				SpawnActor(new AFloor(Count, Line));
 			}
 			else if (SpawnPosition[Count] == 'M')
 			{
 				SpawnActor(new AMonster(Count, Line));
-
+				SpawnActor(new AFloor(Count, Line));
 			}
 			else if (SpawnPosition[Count] == 'G')
 			{
 				SpawnActor(new AGoal(Count, Line));
+				SpawnActor(new AFloor(Count, Line));
 			}
 			else if (SpawnPosition[Count] == '*')
 			{
 				SpawnActor(new AWall(Count, Line));
+				SpawnActor(new AFloor(Count, Line));
 			}
 			else if(SpawnPosition[Count] == ' ')
 			{
@@ -100,7 +103,7 @@ void UWorld::sort()
 	{
 		for(int j = i + 1; j < Actors.size(); ++j)
 		{
-			if(Actors[i]->GetLayer() > Actors[j]->GetLayer())
+			if(Actors[i]->GetLayer() < Actors[j]->GetLayer())
 			{
 				Temp = Actors[j];
 				Actors[j] = Actors[i];
