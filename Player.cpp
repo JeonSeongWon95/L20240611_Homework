@@ -7,20 +7,22 @@ APlayer::APlayer()
 	Y = 1;
 	Team = Teamname::REDTEAM;
 	HP = 100;
-	Shape = 'P';
 	Layer = 0;
 	IsCollision = true;
+	MySurface = SDL_LoadBMP("Player.bmp");
+	MyTexture = SDL_CreateTextureFromSurface(MYENGINE->GetMyRenderer(), MySurface);
 }
 
-APlayer::APlayer(int NewX, int NewY, Teamname NewTeam, int NewHP, char NewShape)
+APlayer::APlayer(int NewX, int NewY, Teamname NewTeam, int NewHP)
 {
 	X = NewX;
 	Y = NewY;
 	Team = NewTeam;
 	HP = NewHP;
-	Shape = NewShape;
 	Layer = 0;
 	IsCollision = true;
+	MySurface = SDL_LoadBMP("Player.bmp");
+	MyTexture = SDL_CreateTextureFromSurface(MYENGINE->GetMyRenderer(), MySurface);
 }
 
 APlayer::~APlayer()
@@ -30,36 +32,41 @@ APlayer::~APlayer()
 
 void APlayer::Tick()
 {
-	switch (MYENGINE->GetKey())
+	switch (MYENGINE->GetEvent()->type)
 	{
-	case 'W':
-	case 'w':
-		if (Predict(X, Y - 1))
+	case SDL_KEYDOWN:
+		switch (MYENGINE->GetEvent()->key.keysym.sym)
 		{
-			Y--;
+		case SDLK_w:
+			if (Predict(X, Y - 1))
+			{
+				Y--;
+			}
+			break;
+		case SDLK_s:
+			if (Predict(X, Y + 1))
+			{
+				Y++;
+			}
+			break;
+		case SDLK_a:
+			if (Predict(X - 1, Y))
+			{
+				X--;
+			}
+			break;
+		case SDLK_d:
+			if (Predict(X + 1, Y))
+			{
+				X++;
+			}
+			break;
+		case SDLK_ESCAPE:
+			SDL_QUIT;
+			break;
+		default:
+			break;
 		}
-		break;
-	case 'S':
-	case 's':
-		if (Predict(X, Y + 1))
-		{
-			Y++;
-		}
-		break;
-	case 'D':
-	case 'd':
-		if (Predict(X + 1, Y))
-		{
-			X++;
-		}
-		break;
-	case 'A':
-	case 'a':
-		if (Predict(X - 1, Y))
-		{
-			X--;
-		}
-		break;
 	default:
 		break;
 	}

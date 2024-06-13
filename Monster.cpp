@@ -1,4 +1,5 @@
 #include "Monster.h"
+#include "Engine.h"
 #include <iostream>
 
 AMonster::AMonster()
@@ -7,18 +8,20 @@ AMonster::AMonster()
 	Y = 5;
 	Team = Teamname::ENEMY;
 	HP = 50;
-	Shape = 'M';
 	Layer = 1;
+	MySurface = SDL_LoadBMP("Monster.bmp");
+	MyTexture = SDL_CreateTextureFromSurface(MYENGINE->GetMyRenderer(), MySurface);
 }
 
-AMonster::AMonster(int NewX, int NewY, Teamname NewTeam, int NewHP, char NewShape)
+AMonster::AMonster(int NewX, int NewY, Teamname NewTeam, int NewHP)
 {
 	X = NewX;
 	Y = NewY;
 	Team = NewTeam;
 	HP = NewHP;
-	Shape = NewShape;
 	Layer = 1;
+	MySurface = SDL_LoadBMP("Monster.bmp");
+	MyTexture = SDL_CreateTextureFromSurface(MYENGINE->GetMyRenderer(), MySurface);
 }
 
 AMonster::~AMonster()

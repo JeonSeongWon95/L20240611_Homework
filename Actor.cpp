@@ -1,17 +1,17 @@
 #include "Actor.h"
 #include "Engine.h"
 #include <iostream>
-#include <windows.h>
 
 AActor::AActor()
 {
 	HP = 0;
-	Shape = ' ';
 	Team = Teamname::NONE;
 	X = 0;
 	Y = 0;
 	Layer = 0;
 	IsCollision = false;
+	MySurface = nullptr;
+	MyTexture = nullptr;
 }
 
 AActor::~AActor()
@@ -24,12 +24,10 @@ void AActor::Tick()
 
 void AActor::Render()
 {
-	COORD Cur;
-	Cur.X = X;
-	Cur.Y = Y;
-	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), Cur);
+	//SDL_RenderDrawRect(MyRenderer, &MyRect);
+	//SDL_SetRenderDrawColor(MyRenderer, 100, 200, 100, 0);
+	//SDL_RenderPresent(MyRenderer);
 
-	std::cout << Shape;
 }
 
 void AActor::SetHP(int NewHP)
@@ -50,11 +48,6 @@ void AActor::SetX(int NewX)
 void AActor::SetY(int NewY)
 {
 	Y = NewY;
-}
-
-void AActor::SetShape(char NewShape)
-{
-	Shape = NewShape;
 }
 
 bool AActor::Predict(int NewX, int NewY)

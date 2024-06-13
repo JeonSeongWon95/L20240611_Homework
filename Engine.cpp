@@ -10,7 +10,7 @@ UEngine::UEngine()
 	World = new UWorld;
 	IsRunning = true;
 	AddressEngine = nullptr;
-	Key = 0;
+	MyEvent = new SDL_Event;
 
 	MyRect.x = 100;
 	MyRect.y = 100;
@@ -36,35 +36,20 @@ UEngine::~UEngine()
 
 void UEngine::Render()
 {
-	//World->RederWorld();
-	SDL_RenderDrawRect(MyRenderer, &MyRect);
-	SDL_SetRenderDrawColor(MyRenderer, 100, 200, 100, 0);
-	SDL_RenderPresent(MyRenderer);
+	World->RederWorld();
 }
 
 void UEngine::Tick()
 {
-
-	switch (MyEvent.type)
+	for(auto Actor : World->GetActors())
 	{
-	case SDL_KEYDOWN:
-		switch (MyEvent.key.keysym.sym)
-		{
-		case SDLK_ESCAPE:
-			IsRunning = false;
-			break;
-		default:
-			break;
-		}
-		break;
-	default:
-		break;
+		Actor->Tick();
 	}
 }
 
 void UEngine::Input()
 {
-	SDL_PollEvent(&MyEvent);
+	SDL_PollEvent(MyEvent);
 }
 
 void UEngine::Run()

@@ -1,4 +1,5 @@
 #include "Goal.h"
+#include "Engine.h"
 
 AGoal::AGoal()
 {
@@ -6,8 +7,9 @@ AGoal::AGoal()
 	Y = 8;
 	Team = Teamname::NONE;
 	HP = 0;
-	Shape = 'G';
 	Layer = 2;
+	MySurface = SDL_LoadBMP("Goal.bmp");
+	MyTexture = SDL_CreateTextureFromSurface(MYENGINE->GetMyRenderer(), MySurface);
 }
 
 AGoal::AGoal(int NewX, int NewY)
@@ -16,7 +18,8 @@ AGoal::AGoal(int NewX, int NewY)
 	Y = NewY;
 	Team = Teamname::NONE;
 	HP = 0;
-	Shape = 'G';
+	MySurface = SDL_LoadBMP("Goal.bmp");
+	MyTexture = SDL_CreateTextureFromSurface(MYENGINE->GetMyRenderer(), MySurface);
 }
 
 AGoal::~AGoal()

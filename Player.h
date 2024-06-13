@@ -4,7 +4,7 @@ class APlayer : public AActor
 {
 public:
 	APlayer();
-	APlayer(int NewX, int NewY,Teamname NewTeam = Teamname::REDTEAM, int NewHP = 100, char NewShape = 'P');
+	APlayer(int NewX, int NewY,Teamname NewTeam = Teamname::REDTEAM, int NewHP = 100);
 	virtual ~APlayer();
 	virtual void Tick() override;
 };

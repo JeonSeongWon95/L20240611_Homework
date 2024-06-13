@@ -1,4 +1,5 @@
 #include "Wall.h"
+#include "Engine.h"
 
 AWall::AWall()
 {
@@ -6,9 +7,10 @@ AWall::AWall()
 	Y = 0;
 	Team = Teamname::NONE;
 	HP = 0;
-	Shape = '*';
 	Layer = 3;
 	IsCollision = true;
+	MySurface = SDL_LoadBMP("Wall.bmp");
+	MyTexture = SDL_CreateTextureFromSurface(MYENGINE->GetMyRenderer(), MySurface);
 }
 
 AWall::AWall(int NewX, int NewY)
@@ -17,9 +19,10 @@ AWall::AWall(int NewX, int NewY)
 	Y = NewY;
 	Team = Teamname::NONE;
 	HP = 0;
-	Shape = '*';
 	Layer = 3;
 	IsCollision = true;
+	MySurface = SDL_LoadBMP("Wall.bmp");
+	MyTexture = SDL_CreateTextureFromSurface(MYENGINE->GetMyRenderer(), MySurface);
 }
 
 AWall::~AWall()

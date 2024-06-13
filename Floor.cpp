@@ -1,4 +1,5 @@
 #include "Floor.h"
+#include "Engine.h"
 
 AFloor::AFloor()
 {
@@ -6,8 +7,9 @@ AFloor::AFloor()
 	Y = 0;
 	Team = Teamname::NONE;
 	HP = 0;
-	Shape = ' ';
 	Layer = 4;
+	MySurface = SDL_LoadBMP("Floor.bmp");
+	MyTexture = SDL_CreateTextureFromSurface(MYENGINE->GetMyRenderer(), MySurface);
 }
 
 AFloor::AFloor(int NewX, int NewY)
@@ -16,8 +18,9 @@ AFloor::AFloor(int NewX, int NewY)
 	Y = NewY;
 	Team = Teamname::NONE;
 	HP = 0;
-	Shape = ' ';
 	Layer = 4;
+	MySurface = SDL_LoadBMP("Floor.bmp");
+	MyTexture = SDL_CreateTextureFromSurface(MYENGINE->GetMyRenderer(), MySurface);
 }
 
 AFloor::~AFloor()

@@ -1,4 +1,5 @@
 #pragma once
+#include "SDL.h"
 
 enum class Teamname 
 {
@@ -20,7 +21,6 @@ public:
 	inline int GetLayer() const { return Layer; }
 	inline int GetX() const { return X; }
 	inline int GetY() const { return Y; }
-	inline char GetShape() const { return Shape; }
 	inline int GetHP() const { return HP; }
 	inline Teamname GetTeam() const { return Team; }
 	virtual void Tick();
@@ -29,7 +29,6 @@ public:
 	void SetTeam(Teamname NewTeam);
 	void SetX(int NewX);
 	void SetY(int NewY);
-	void SetShape(char NewShape);
 	bool Predict(int NewX, int NewY);
 	inline bool GetIsCollision() { return IsCollision; }
 	
@@ -45,7 +44,8 @@ protected:
 	int HP;
 	bool IsCollision;
 	Teamname Team;
-	char Shape;
+	SDL_Surface* MySurface;
+	SDL_Texture* MyTexture;
 	
 };
 
