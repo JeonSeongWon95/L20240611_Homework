@@ -1,5 +1,6 @@
 #pragma once
 #include "World.h"
+#include "SDL.h"
 
 
 class UEngine
@@ -36,6 +37,10 @@ protected:
 	char Key;
 	bool IsRunning;
 	static UEngine* AddressEngine;
+	SDL_Window* MyWindow;
+	SDL_Event MyEvent;
+	SDL_Renderer* MyRenderer;
+	SDL_Rect MyRect;
 };
 
 #define MYENGINE UEngine::GetInstance()
