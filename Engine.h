@@ -28,8 +28,9 @@ public:
 	void Render();
 	void Tick();
 	void Input();
-	inline char GetKey() { return Key; }
+	void SetSumTime(float NewSum);
 	inline UWorld* GetWorld() { return World; }
+	inline float GetSumTime() { return SumTime; }
 	inline SDL_Event* GetEvent() { return MyEvent; }
 	inline bool GetIsRunning() { return IsRunning; }
 	inline SDL_Renderer* GetMyRenderer() { return MyRenderer; }
@@ -39,11 +40,12 @@ public:
 
 protected:
 	UWorld* World;
-	char Key;
 	bool IsRunning;
 	static UEngine* AddressEngine;
 	SDL_Window* MyWindow;
 	SDL_Event* MyEvent;
 	SDL_Renderer* MyRenderer;
-	SDL_Rect MyRect;
+	float DeltaTime;
+	float LastTime;
+	float SumTime;
 };

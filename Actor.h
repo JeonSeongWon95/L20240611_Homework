@@ -22,9 +22,10 @@ public:
 	inline int GetX() const { return X; }
 	inline int GetY() const { return Y; }
 	inline int GetHP() const { return HP; }
+	inline SDL_Rect GetRect() const { return MyRect; }
 	inline Teamname GetTeam() const { return Team; }
 	virtual void Tick();
-	void Render();
+	virtual void Render();
 	void SetHP(int NewHP);
 	void SetTeam(Teamname NewTeam);
 	void SetX(int NewX);
@@ -42,10 +43,12 @@ protected:
 	int X;
 	int Y;
 	int HP;
+	int SpriteSize;
 	bool IsCollision;
 	Teamname Team;
 	SDL_Surface* MySurface;
 	SDL_Texture* MyTexture;
-	
+	SDL_Rect MyRect;
+
 };
 

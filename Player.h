@@ -7,5 +7,6 @@ public:
 	APlayer(int NewX, int NewY,Teamname NewTeam = Teamname::REDTEAM, int NewHP = 100);
 	virtual ~APlayer();
 	virtual void Tick() override;
+	//virtual void Render() override;
 };
 

@@ -9,7 +9,7 @@ APlayer::APlayer()
 	HP = 100;
 	Layer = 0;
 	IsCollision = true;
-	MySurface = SDL_LoadBMP("Player.bmp");
+	MySurface = SDL_LoadBMP("Data/Player.bmp");
 	MyTexture = SDL_CreateTextureFromSurface(MYENGINE->GetMyRenderer(), MySurface);
 }
 
@@ -21,7 +21,7 @@ APlayer::APlayer(int NewX, int NewY, Teamname NewTeam, int NewHP)
 	HP = NewHP;
 	Layer = 0;
 	IsCollision = true;
-	MySurface = SDL_LoadBMP("Player.bmp");
+	MySurface = SDL_LoadBMP("Data/Player.bmp");
 	MyTexture = SDL_CreateTextureFromSurface(MYENGINE->GetMyRenderer(), MySurface);
 }
 
@@ -71,3 +71,38 @@ void APlayer::Tick()
 		break;
 	}
 }
+
+//void APlayer::Render()
+//{
+//	SDL_Rect MyRect2;
+//	MyRect2.x = X * SpriteSize;
+//	MyRect2.y = Y * SpriteSize;
+//	MyRect2.w = SpriteSize;
+//	MyRect2.h = SpriteSize;
+//
+//	SDL_Rect SrcRect;
+//	int SpriteX = SpriteSize / 5;
+//	int SpriteY = SpriteSize / 5;
+//
+//	SrcRect.x = X * SpriteX;
+//	SrcRect.y = Y * SpriteY;
+//	SrcRect.w = SpriteX;
+//	SrcRect.h = SpriteY;
+//
+//	MyTexture = SDL_CreateTextureFromSurface(MYENGINE->GetMyRenderer(), MySurface);
+//
+//	if (MYENGINE->GetSumTime() >= 200)
+//	{
+//		MYENGINE->SetSumTime(0);
+//
+//	}
+//	if (MyTexture)
+//	{
+//		SDL_RenderCopy(MYENGINE->GetMyRenderer(), MyTexture, &SrcRect, &MyRect2);
+//	}
+//	else
+//	{
+//		SDL_Log("Texture does not exist.");
+//	}
+//
+//}

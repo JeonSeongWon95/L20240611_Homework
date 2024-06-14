@@ -8,7 +8,7 @@ AFloor::AFloor()
 	Team = Teamname::NONE;
 	HP = 0;
 	Layer = 4;
-	MySurface = SDL_LoadBMP("Floor.bmp");
+	MySurface = SDL_LoadBMP("Data/Floor.bmp");
 	MyTexture = SDL_CreateTextureFromSurface(MYENGINE->GetMyRenderer(), MySurface);
 }
 
@@ -19,7 +19,7 @@ AFloor::AFloor(int NewX, int NewY)
 	Team = Teamname::NONE;
 	HP = 0;
 	Layer = 4;
-	MySurface = SDL_LoadBMP("Floor.bmp");
+	MySurface = SDL_LoadBMP("Data/Floor.bmp");
 	MyTexture = SDL_CreateTextureFromSurface(MYENGINE->GetMyRenderer(), MySurface);
 }
 

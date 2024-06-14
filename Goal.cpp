@@ -8,7 +8,7 @@ AGoal::AGoal()
 	Team = Teamname::NONE;
 	HP = 0;
 	Layer = 2;
-	MySurface = SDL_LoadBMP("Goal.bmp");
+	MySurface = SDL_LoadBMP("Data/Goal.bmp");
 	MyTexture = SDL_CreateTextureFromSurface(MYENGINE->GetMyRenderer(), MySurface);
 }
 
@@ -18,7 +18,7 @@ AGoal::AGoal(int NewX, int NewY)
 	Y = NewY;
 	Team = Teamname::NONE;
 	HP = 0;
-	MySurface = SDL_LoadBMP("Goal.bmp");
+	MySurface = SDL_LoadBMP("Data/Goal.bmp");
 	MyTexture = SDL_CreateTextureFromSurface(MYENGINE->GetMyRenderer(), MySurface);
 }
 

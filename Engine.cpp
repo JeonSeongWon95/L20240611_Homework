@@ -11,11 +11,9 @@ UEngine::UEngine()
 	IsRunning = true;
 	AddressEngine = nullptr;
 	MyEvent = new SDL_Event;
-
-	MyRect.x = 100;
-	MyRect.y = 100;
-	MyRect.w = 300;
-	MyRect.h = 200;
+	LastTime = 0;
+	DeltaTime = 0;
+	SumTime = 0;
 
 	if (SDL_Init(SDL_INIT_EVERYTHING) < 0)
 	{
@@ -25,8 +23,8 @@ UEngine::UEngine()
 	{
 		std::cout << "Init Success" << endl;
 	}
-	
-	MyWindow = SDL_CreateWindow("My Game", 500, 500, 640, 480, SDL_WINDOW_OPENGL);
+
+	MyWindow = SDL_CreateWindow("My Game", 300, 300, 640, 640, SDL_WINDOW_OPENGL);
 	MyRenderer = SDL_CreateRenderer(MyWindow, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC | SDL_RENDERER_TARGETTEXTURE);
 }
 
@@ -36,12 +34,25 @@ UEngine::~UEngine()
 
 void UEngine::Render()
 {
-	World->RederWorld();
+	SDL_GetRenderDrawColor(MyRenderer, 0, 0, 0, 0);
+	SDL_RenderClear(MyRenderer);
+
+	for (auto Actor : World->GetActors())
+	{
+		Actor->Render();
+	}
+
+	SDL_RenderPresent(MyRenderer);
+
 }
 
 void UEngine::Tick()
 {
-	for(auto Actor : World->GetActors())
+	DeltaTime = SDL_GetTicks64() - LastTime;
+	LastTime = SDL_GetTicks64();
+	SumTime += DeltaTime;
+
+	for (auto Actor : World->GetActors())
 	{
 		Actor->Tick();
 	}
@@ -50,6 +61,11 @@ void UEngine::Tick()
 void UEngine::Input()
 {
 	SDL_PollEvent(MyEvent);
+}
+
+void UEngine::SetSumTime(float NewSum)
+{
+	SumTime = NewSum;
 }
 
 void UEngine::Run()

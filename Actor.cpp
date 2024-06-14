@@ -12,6 +12,8 @@ AActor::AActor()
 	IsCollision = false;
 	MySurface = nullptr;
 	MyTexture = nullptr;
+	MyRect = { 0, };
+	SpriteSize = 60;
 }
 
 AActor::~AActor()
@@ -24,9 +26,19 @@ void AActor::Tick()
 
 void AActor::Render()
 {
-	//SDL_RenderDrawRect(MyRenderer, &MyRect);
-	//SDL_SetRenderDrawColor(MyRenderer, 100, 200, 100, 0);
-	//SDL_RenderPresent(MyRenderer);
+	MyRect.x = X * SpriteSize;
+	MyRect.y = Y * SpriteSize;
+	MyRect.w = SpriteSize;
+	MyRect.h = SpriteSize;
+
+	if (MyTexture)
+	{
+		SDL_RenderCopy(MYENGINE->GetMyRenderer(), MyTexture, nullptr, &MyRect);
+	}
+	else
+	{
+		SDL_Log("Texture does not exist.");
+	}
 
 }
 
@@ -66,7 +78,7 @@ bool AActor::Predict(int NewX, int NewY)
 		{
 			return false;
 		}
-		
+
 	}
 
 	return true;

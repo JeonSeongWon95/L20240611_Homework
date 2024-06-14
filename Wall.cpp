@@ -9,7 +9,7 @@ AWall::AWall()
 	HP = 0;
 	Layer = 3;
 	IsCollision = true;
-	MySurface = SDL_LoadBMP("Wall.bmp");
+	MySurface = SDL_LoadBMP("Data/Wall.bmp");
 	MyTexture = SDL_CreateTextureFromSurface(MYENGINE->GetMyRenderer(), MySurface);
 }
 
@@ -21,7 +21,7 @@ AWall::AWall(int NewX, int NewY)
 	HP = 0;
 	Layer = 3;
 	IsCollision = true;
-	MySurface = SDL_LoadBMP("Wall.bmp");
+	MySurface = SDL_LoadBMP("Data/Wall.bmp");
 	MyTexture = SDL_CreateTextureFromSurface(MYENGINE->GetMyRenderer(), MySurface);
 }
 
