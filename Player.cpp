@@ -10,8 +10,9 @@ APlayer::APlayer()
 	X = 1;
 	Y = 1;
 	Team = Teamname::REDTEAM;
-	HP = 100;
+	HP = 2;
 	Layer = 0;
+	Damage = 0;
 	IsCollision = true;
 	MySurface = SDL_LoadBMP("Data/Player.bmp");
 	SDL_SetColorKey(MySurface, 1, SDL_MapRGB(MySurface->format, ColorR, ColorG, ColorB));
@@ -38,6 +39,7 @@ APlayer::APlayer(int NewX, int NewY, Teamname NewTeam, int NewHP)
 	Team = NewTeam;
 	HP = NewHP;
 	Layer = 0;
+	Damage = 0;
 	IsCollision = true;
 	MySurface = SDL_LoadBMP("Data/Player.bmp");
 	SDL_SetColorKey(MySurface, 1, SDL_MapRGB(MySurface->format, ColorR, ColorG, ColorB));

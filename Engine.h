@@ -1,6 +1,7 @@
 #pragma once
 #include "World.h"
 #include "SDL.h"
+#include "SDL_mixer.h"
 
 #define MYENGINE UEngine::GetInstance()
 
@@ -45,6 +46,7 @@ protected:
 	SDL_Window* MyWindow;
 	SDL_Event* MyEvent;
 	SDL_Renderer* MyRenderer;
+	Mix_Chunk* Sound;
 	float DeltaTime;
 	float LastTime;
 	float SumTime;

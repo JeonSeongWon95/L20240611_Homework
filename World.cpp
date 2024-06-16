@@ -8,6 +8,7 @@
 #include "Wall.h"
 #include "Goal.h"
 #include "Floor.h"
+#include "UI.h"
 
 
 UWorld::UWorld()
@@ -20,6 +21,7 @@ UWorld::~UWorld()
 	{
 		delete Actor;
 	}
+
 
 	Actors.clear();
 }
@@ -92,6 +94,29 @@ void UWorld::TickWorld()
 	for(auto Actor : Actors)
 	{
 		Actor->Tick();
+	}
+	
+	AActor* Player = nullptr;
+
+	for(auto Actor : Actors)
+	{
+		if(Actor->GetTeam() == Teamname::REDTEAM)
+		{
+			Player = Actor;
+		}
+
+		if(Player != nullptr)
+		{
+			if (Player->GetX() == Actor->GetX() && Player->GetY() == Actor->GetY())
+			{
+				if (Actor->GetTeam() == Teamname::ENEMY)
+				{
+					Actor->SetHP(Actor->GetHP() - Player->GetDamage());
+					Player->SetHP(Player->GetHP() - Actor->GetDamage());
+				}
+			}
+			
+		}
 	}
 }
 

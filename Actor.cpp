@@ -9,6 +9,7 @@ AActor::AActor()
 	X = 0;
 	Y = 0;
 	Layer = 0;
+	Damage = 0;
 	IsCollision = false;
 	MySurface = nullptr;
 	MyTexture = nullptr;

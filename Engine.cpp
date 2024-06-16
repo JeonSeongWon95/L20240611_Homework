@@ -1,9 +1,11 @@
 #include "Engine.h"
 #include "SDL.h"
+#include "SDL_mixer.h"
 #include <string>
 #include <conio.h>
 
 UEngine* UEngine::AddressEngine = nullptr;
+
 
 UEngine::UEngine()
 {
@@ -26,10 +28,18 @@ UEngine::UEngine()
 
 	MyWindow = SDL_CreateWindow("My Game", 300, 300, 640, 640, SDL_WINDOW_OPENGL);
 	MyRenderer = SDL_CreateRenderer(MyWindow, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC | SDL_RENDERER_TARGETTEXTURE);
+
+	Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048);
+
+	Sound = Mix_LoadWAV("Data/bgm.mp3");
+
+	Mix_PlayChannel(-1, Sound, -1);
+
 }
 
 UEngine::~UEngine()
 {
+	Mix_FreeChunk(Sound);
 }
 
 void UEngine::Render()
@@ -51,11 +61,8 @@ void UEngine::Tick()
 	DeltaTime = SDL_GetTicks64() - LastTime;
 	LastTime = SDL_GetTicks64();
 	SumTime += DeltaTime;
-
-	for (auto Actor : World->GetActors())
-	{
-		Actor->Tick();
-	}
+	
+	World->TickWorld();
 }
 
 void UEngine::Input()

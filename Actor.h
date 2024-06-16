@@ -22,6 +22,7 @@ public:
 	inline int GetX() const { return X; }
 	inline int GetY() const { return Y; }
 	inline int GetHP() const { return HP; }
+	inline int GetDamage() const { return Damage; }
 	inline SDL_Rect GetRect() const { return MyRect; }
 	inline Teamname GetTeam() const { return Team; }
 	virtual void Tick();
@@ -44,6 +45,7 @@ protected:
 	int Y;
 	int HP;
 	int SpriteSize;
+	int Damage;
 	bool IsCollision;
 
 	unsigned int ColorR;
