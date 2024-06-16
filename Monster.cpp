@@ -9,7 +9,9 @@ AMonster::AMonster()
 	Team = Teamname::ENEMY;
 	HP = 50;
 	Layer = 1;
+	MonsterTime = 0;
 	MySurface = SDL_LoadBMP("Data/Monster.bmp");
+	SDL_SetColorKey(MySurface, 1, SDL_MapRGB(MySurface->format, ColorR, ColorG, ColorB));
 	MyTexture = SDL_CreateTextureFromSurface(MYENGINE->GetMyRenderer(), MySurface);
 }
 
@@ -20,7 +22,9 @@ AMonster::AMonster(int NewX, int NewY, Teamname NewTeam, int NewHP)
 	Team = NewTeam;
 	HP = NewHP;
 	Layer = 1;
+	MonsterTime = 0;
 	MySurface = SDL_LoadBMP("Data/Monster.bmp");
+	SDL_SetColorKey(MySurface, 1, SDL_MapRGB(MySurface->format, ColorR, ColorG, ColorB));
 	MyTexture = SDL_CreateTextureFromSurface(MYENGINE->GetMyRenderer(), MySurface);
 }
 
@@ -33,8 +37,9 @@ void AMonster::Tick()
 	srand(time(nullptr));
 
 	int RandomMove = rand() % 4;
+	MonsterTime += MYENGINE->GetDeltaTime();
 
-	if (MYENGINE->GetSumTime() >= 200)
+	if (MonsterTime >= 200)
 	{
 
 		switch (RandomMove)
@@ -65,7 +70,7 @@ void AMonster::Tick()
 			break;
 		}
 
-		MYENGINE->SetSumTime(0.0f);
+		MonsterTime = 0.0f;
 
 	}
 	

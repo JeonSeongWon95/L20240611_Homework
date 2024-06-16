@@ -14,6 +14,9 @@ AActor::AActor()
 	MyTexture = nullptr;
 	MyRect = { 0, };
 	SpriteSize = 60;
+	ColorR = 255;
+	ColorG = 255;
+	ColorB = 255;
 }
 
 AActor::~AActor()

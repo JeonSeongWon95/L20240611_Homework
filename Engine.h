@@ -30,7 +30,7 @@ public:
 	void Input();
 	void SetSumTime(float NewSum);
 	inline UWorld* GetWorld() { return World; }
-	inline float GetSumTime() { return SumTime; }
+	inline float GetDeltaTime() { return DeltaTime; }
 	inline SDL_Event* GetEvent() { return MyEvent; }
 	inline bool GetIsRunning() { return IsRunning; }
 	inline SDL_Renderer* GetMyRenderer() { return MyRenderer; }

@@ -45,6 +45,11 @@ protected:
 	int HP;
 	int SpriteSize;
 	bool IsCollision;
+
+	unsigned int ColorR;
+	unsigned int ColorG;
+	unsigned int ColorB;
+
 	Teamname Team;
 	SDL_Surface* MySurface;
 	SDL_Texture* MyTexture;

@@ -8,5 +8,8 @@ public:
 	virtual ~AMonster();
 
 	virtual void Tick() override;
+
+protected:
+	float MonsterTime;
 };
 
